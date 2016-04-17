@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+<!-- DB접속정보 값을 가지고 있는 파일 -->
+	 <typeAliases>
+		<typeAlias type="org.javatree.www.VO.Question" alias="Question"/>
+		<typeAlias type="org.javatree.www.VO.Reply" alias="Reply"/>
+		<typeAlias type="org.javatree.www.VO.Rereply" alias="Rereply"/>
+		<typeAlias type="org.javatree.www.VO.Coding" alias="Coding"/>
+		<typeAlias type="org.javatree.www.VO.Lecture" alias="Lecture"/>
+		<typeAlias type="org.javatree.www.VO.Lecture" alias="Course"/>
+	</typeAliases>
+	
+	<typeHandlers>
+   		<typeHandler handler="org.apache.ibatis.type.ClobTypeHandler" jdbcType="CLOB" javaType="java.lang.String"/>
+    </typeHandlers>
+	
+<!-- 	SQL문 정의한 파일 포함
+ -->	
+ 	<mappers>
+ 		<mapper resource="mappers/compilerMapper.xml"/>
+		<mapper resource="mappers/qnaMapper.xml"/>
+	</mappers>  
+	
+</configuration>

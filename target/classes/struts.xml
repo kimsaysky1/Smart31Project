@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+<!-- <constant name="struts.action.excludePattern" value="/SchServlet"></constant> -->
+	
+	 <!-- <package name="etc" namespace="/" extends="json-default">
+	 	<action name="insertRereply" class="action.Action" method="insertRereply">
+        	<result type= "json"></result>
+        </action>
+	 
+	 </package> -->
+	 
+     <package name="default" namespace="/" extends="struts-default">
+     	<default-action-ref name="index"/>
+     	<action name="index">
+     		<result>/WEB-INF/views/index.jsp</result>
+     	</action>
+     	
+     	<action name="insertQuestionReady">
+     		<result>/WEB-INF/views/QNA/qnaQuestion.jsp</result>
+     	</action>
+     	
+     	<action name="insertQuestion" class="org.javatree.www.Action.QnaAction" method="insertQuestion">
+     		<result>/WEB-INF/views/QNA/qnaDetail.jsp</result>
+     	</action>
+     	
+     	<action name="insertReplyReady" class="org.javatree.www.Action.QnaAction" method="insertReplyReady">
+     		<result>/WEB-INF/views/QNA/qnaReply.jsp</result>
+     	</action>
+     	
+     	<action name="insertReply" class="org.javatree.www.Action.QnaAction" method="insertReply">
+     		<result>/WEB-INF/views/QNA/qnaDetail.jsp</result>
+     	</action>
+     	
+     	<action name="insertRereply" class="org.javatree.www.Action.QnaAction" method="insertRereply">
+     		<result>/WEB-INF/views/QNA/qnaDetail.jsp</result>
+     	</action>
+     	
+     	<action name="qnaDefaultMain" class="org.javatree.www.Action.QnaAction" method="qnaDefaultMain">
+     		<result>/WEB-INF/views/QNA/qnaDefaultMain.jsp</result>
+     	</action>
+     	
+     	<action name="qnaDetail" class="org.javatree.www.Action.QnaAction" method="qnaDetail">
+     		<result>/WEB-INF/views/QNA/qnaDetail.jsp</result>
+     	</action>
+     	
+    </package>
+	
+	<include file="action_struts/compilerAction.xml"/>
+</struts>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javatree.www.DAO.QnaDAO">
+	
+	<resultMap type="Question" id="QuestionMap">
+		<result property="questionno" column="questionno"/>
+		<result property="typeno" column="typeno"/>
+		<result property="codingno" column="codingno"/>
+		<result property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="title" column="title"/>
+		<result property="content"  column="content"  jdbcType="CLOB" javaType="java.lang.String" typeHandler="org.apache.ibatis.type.ClobTypeHandler"/>
+		<result property="regdate" column="regdate"/>
+		<result property="hitcount" column="hitcount"/>
+		<result property="curious" column="curious"/>
+	</resultMap>
+	
+	<resultMap type="Reply" id="ReplyMap">
+		<result property="questionno" column="questionno"/>
+		<result property="replyno" column="replyno"/>
+		<result property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="content"  column="content"  jdbcType="CLOB" javaType="java.lang.String" typeHandler="org.apache.ibatis.type.ClobTypeHandler"/>
+		<result property="regdate" column="regdate"/>
+		<result property="recommend" column="recommend"/>
+		<collection property="rereplyList" javaType="java.util.ArrayList" column="replyno" ofType="Rereply" select="selectAllRereply"/>
+	</resultMap>
+	
+	<insert id="insertQuestion" parameterType="Question">
+		insert into question
+		(questionno, typeno
+		<if test="codingno != null">
+		, codingno
+		</if>
+		, id, username, title, content
+		) 
+		values
+		(
+		question_seq.nextVal
+		, #{typeno}
+		<if test="codingno != null">
+		, #{codingno}
+		</if>
+		, #{id}
+		, #{username}
+		, #{title}
+		, #{content:VARCHAR}
+		)
+	</insert>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into reply
+		(questionno, replyno, id, username, content
+		) 
+		values
+		(
+		#{questionno}
+		, reply_seq.nextVal
+		, #{id}
+		, #{username}
+		, #{content:VARCHAR}
+		)
+	</insert>
+	
+	<insert id = "insertRereply" parameterType="Rereply">
+		insert into rereply
+		(replyno, id, content, username
+		) 
+		values
+		(
+		#{replyno}
+		, #{id}
+		, #{content}
+		, #{username}
+		)
+	</insert>
+	
+	<select id="selectAllQuestion" resultMap="QuestionMap">
+		select * from question 
+	</select>
+	
+	<select id="selectOneQuestion" parameterType="int" resultMap="QuestionMap">
+		select * from question where questionno = #{questionno}
+	</select>
+	
+	<select id="selectAllReply" parameterType="int" resultMap="ReplyMap">
+		select * from reply where questionno = #{questionno}
+	</select>
+	
+	<select id="selectAllRereply" parameterType="int" resultType="Rereply">
+		select * from rereply where replyno = #{replyno}
+	</select>
+	
+	<!-- <insert id="insert"> 
+	
+	</insert> -->
+	
+</mapper>
