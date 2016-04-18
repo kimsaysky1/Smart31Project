@@ -10,5 +10,6 @@
 	<a href="qnaDefaultMain">지식인 메인</a>
 	<a href="insertQuestionReady">지식인 글쓰기</a>
 	<a href="compiler/Compiler.action">강의 시청</a>
+	<H1>수지</H1>
 </body>
 </html>
