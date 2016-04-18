@@ -319,18 +319,40 @@ $(function(){
 	    // You may replace `c` with whatever key you want
 	    if ( e.ctrlKey && ( String.fromCharCode(e.which).toLowerCase() === 'd') ) {
 	    	alert('in');
-	    	var val = $(".editor").val();
-	    	alert(val);
+	    	
+	    	//var val = $(".editor").val();
+	    	
+	    	alert(e.selectionStart);
+	    	alert(e.selectionEnd);
+	    	/*alert(val);
 	    	var number = val.substr(0, $(".editor").selectionStart).split("\n").length;
-	    	alert(number);
+	    	alert(number); */
 	    }
 	});
+	
+	/* function setSelectionRange(input, selectionStart, selectionEnd) {
+		  if (input.setSelectionRange) {
+		    input.focus();
+		    input.setSelectionRange(selectionStart, selectionEnd);
+		  }
+		  else if (input.createTextRange) {
+		    var range = input.createTextRange();
+		    range.collapse(true);
+		    range.moveEnd('character', selectionEnd);
+		    range.moveStart('character', selectionStart);
+		    range.select();
+		  }
+		}
+
+		function setCaretToPos (input, pos) {
+		  setSelectionRange(input, pos, pos);
+		} */
 	
 	$("#doccontent").on('keydown', '.editor', function(e) {
 	    if(e.keyCode === 9) { 
 	        var start = this.selectionStart;
 	        var end = this.selectionEnd;
-
+			
 	        var $this = $(this);
 	        var value = $this.val();
 	        $this.val(value.substring(0, start)
